@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MonDB Movies</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+</head>
+<body>
+    <main class="conteiner">
+        
+            <h1>Movies DataBase</h1>
+            <section class="container">
+                <form action="/">
+                    <label for="'title">Título buscado</label>
+                    <input type="text" name="title" id="title">
+                    <input type="submit" value="Buscar">
+                </form>
+            </section>
+            <% for (const movie of documents) { %>
+            <article>
+                <header>
+                    <%= movie.title %>
+                </header>
+                <img src="<%= movie.poster %>" alt="">
+                <footer>Año de lanzamiento <%= movie.year %></footer>
+              
+            </article>
+            <% } %>
+       
+
+
+    </main>
+</body>
+</html>
