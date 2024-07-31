@@ -31,15 +31,36 @@ app.use(morgan('dev'));
 app.get('/',  async (req, res) => {
     const movies = database.collection('movies');
 
-    const { title } = req.query;
-    console.log("🚀 ~ app.get ~ title:", title)
+    const { keyword, type, fromYear } = req.query;
   
     
     const query = {};
 
+    if (keyword) {
+        query.title = new RegExp(keyword, 'i');
+        // query.plot = new RegExp(keyword, 'i');
+        // const keyword = new RegExp(keyword, 'i');
+        
+        // query.$or = [
+        //     {title: keyword},
+        //     {plot: keyword},
+        //     {fullplot: keyword}
+        // ]
+    }
+
+    if (type){
+        query.type = type
+    }
+
+    if(fromYear){
+        query.year = { $gte: Number(fromYear) }
+    }
+
+    console.log("aspecto de la query hasta el momento: ", query);
+
     const options = {
         limit: 10,
-        projection: {_id: 0, title: 1, year: 1, poster: 1},
+        // projection: {_id: 0, title: 1, year: 1, poster: 1},
         sort: { year: -1 }
     }
 

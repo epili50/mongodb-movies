@@ -11,9 +11,25 @@
         
             <h1>Movies DataBase</h1>
             <section class="container">
+                <!-- Formulario. 1. De momento solo buscar por título- Al campo título le vamos poner el valor 'title' en el atributo 'name' (name="title") El endpoint donde debe enviar la información va a ser el mismo endpoint '/?title="jumanji"' . -->
                 <form action="/">
-                    <label for="'title">Título buscado</label>
-                    <input type="text" name="title" id="title">
+                    <label for="keyword">Palabra Clave: </label>
+                    <input type="text" name="keyword" id="keyword">
+                    <!-- Cambiar title por palabra clave -> buscar tanto el campo 'title' como en el campo 'plot' como en el campo 'fullPlot' -->
+                    <!-- tipo filmación: <select> . Buscar en el campo 'type' -->
+                    <label for="type">Tipo de filmación</label>
+                    <select name="type" id="type">
+                        <option value="">Todos los tipos</option>
+                        <option value="movie">Película</option>
+                        <option value="serie">Serie</option>
+                    </select>
+                    <!-- Año de lanzamiento: dos <input type='number' o explorar si el input type="date" permite seleccionar solo año. Buscar en el campo 'year' -->
+                    <fieldset class="grid">
+                        <label for="fromYear">Des de el año:</label>
+                        <input type="number" name="fromYear" id="fromYear" min="1850">
+                        <label for="toYear">Hasta el año:</label>
+                        <input type="number" name="toYear" id="toYear" min="1850">
+                    </fieldset>
                     <input type="submit" value="Buscar">
                 </form>
             </section>
@@ -23,6 +39,9 @@
                     <%= movie.title %>
                 </header>
                 <img src="<%= movie.poster %>" alt="">
+                <div>
+                    <%= movie.plot %>
+                </div>
                 <footer>Año de lanzamiento <%= movie.year %></footer>
               
             </article>
